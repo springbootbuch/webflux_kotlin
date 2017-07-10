@@ -1,4 +1,4 @@
-package de.springbootbuch.helloworld
+package de.springbootbuch.webflux_kotlin
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
