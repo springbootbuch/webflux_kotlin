@@ -13,33 +13,33 @@ import reactor.core.publisher.Mono
 
 @SpringBootApplication
 class Application {
-    @Component
-    class Handler {
-        fun sayHello(req: ServerRequest) =
-            ok().body(
-                    Mono.just("Hello, ${req.queryParam("name").orElse("World")}"),
-                    String::class.java
-            )
+	@Component
+	class Handler {
+		fun sayHello(req: ServerRequest) =
+			ok().body(
+				Mono.just("Hello, ${req.queryParam("name").orElse("World")}"),
+				String::class.java
+			)
 
-        fun goodbye(req: ServerRequest) =
-            ok().body(
-                    Mono.just("Goodbye"),
-                    String::class.java
-            )
-    }
+		fun andGoodbye(req: ServerRequest) =
+			ok().body(
+				Mono.just("Goodbye"),
+				String::class.java
+			)
+	}
 
-    @Configuration
-    class RoutesConfig(val handler: Handler) {
-        @Bean
-        fun routes() = router {
-            ("/greetings" and accept(TEXT_HTML)).nest {
-                GET("/hello", handler::sayHello)
-                GET("/goodbye", handler::goodbye)
-            }
-        }
-    }
+	@Configuration
+	class RoutesConfig(val handler: Handler) {
+		@Bean
+		fun routes() = router {
+			("/greetings" and accept(TEXT_HTML)).nest {
+				GET("/hello", handler::sayHello)
+				GET("/goodbye", handler::andGoodbye)
+			}
+		}
+	}
 }
 
 fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
+	SpringApplication.run(Application::class.java, *args)
 }
