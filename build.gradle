@@ -4,7 +4,7 @@ buildscript {
         maven { url "https://repo.spring.io/libs-snapshot" }
     }
     ext {
-        ktVersion = "1.1.0"
+        ktVersion = "1.1.2"
         springBootVersion = "2.0.0.M2"
     }
     dependencies {
