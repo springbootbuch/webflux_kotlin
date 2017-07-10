@@ -3,6 +3,7 @@ package de.springbootbuch.helloworld
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -27,7 +28,7 @@ class Application {
             )
     }
 
-    @Component
+    @Configuration
     class RoutesConfig(val handler: Handler) {
         @Bean
         fun routes() = router {
