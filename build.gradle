@@ -19,6 +19,12 @@ apply plugin: "kotlin-spring"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 
+kotlinCompile {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 jar {
     baseName = "webflux_kotlin"
     version = "0.0.1-SNAPSHOT"
