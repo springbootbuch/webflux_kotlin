@@ -1,7 +1,7 @@
 package de.springbootbuch.webflux_kotlin
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.context.support.beans
@@ -41,13 +41,15 @@ fun beans() = beans {
 	}
 }
 
+class BeansInitializer<T> :
+		ApplicationContextInitializer<GenericApplicationContext> {
+	override fun initialize(ctx: GenericApplicationContext)
+			= beans().initialize(ctx)
+}
+
 @SpringBootApplication
 class Application
 
 fun main(args: Array<String>) {
-	SpringApplicationBuilder(Application::class.java)
-			.initializers(
-					ApplicationContextInitializer<GenericApplicationContext> { beans().initialize(it) }
-			)
-			.run(*args)
+	SpringApplication.run(Application::class.java, *args)
 }
