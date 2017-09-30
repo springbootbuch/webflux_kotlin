@@ -1,45 +1,53 @@
 package de.springbootbuch.webflux_kotlin
 
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
+import org.springframework.boot.builder.SpringApplicationBuilder
+import org.springframework.context.ApplicationContextInitializer
+import org.springframework.context.support.GenericApplicationContext
+import org.springframework.context.support.beans
 import org.springframework.http.MediaType.TEXT_HTML
-import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
 
-@SpringBootApplication
-class Application {
-	@Component
-	class Handler {
-		fun sayHello(req: ServerRequest) =
+class Handler {
+	fun sayHello(req: ServerRequest) =
 			ok().body(
-				Mono.just("Hello, ${req.queryParam("name").orElse("World")}"),
-				String::class.java
+					Mono.just("Hello, ${req.queryParam("name").orElse("World")}"),
+					String::class.java
 			)
 
-		fun andGoodbye(req: ServerRequest) =
+	fun andGoodbye(req: ServerRequest) =
 			ok().body(
-				Mono.just("Goodbye"),
-				String::class.java
+					Mono.just("Goodbye"),
+					String::class.java
 			)
-	}
+}
 
-	@Configuration
-	class RoutesConfig(val handler: Handler) {
-		@Bean
-		fun routes() = router {
-			("/greetings" and accept(TEXT_HTML)).nest {
-				GET("/hello", handler::sayHello)
-				GET("/goodbye", handler::andGoodbye)
-			}
+class Router(val handler: Handler) {
+	fun routes() = router {
+		("/greetings" and accept(TEXT_HTML)).nest {
+			GET("/hello", handler::sayHello)
+			GET("/goodbye", handler::andGoodbye)
 		}
 	}
 }
 
+fun beans() = beans {
+	bean<Handler>()
+	bean {
+		Router(ref()).routes()
+	}
+}
+
+@SpringBootApplication
+class Application
+
 fun main(args: Array<String>) {
-	SpringApplication.run(Application::class.java, *args)
+	SpringApplicationBuilder(Application::class.java)
+			.initializers(
+					ApplicationContextInitializer<GenericApplicationContext> { beans().initialize(it) }
+			)
+			.run(*args)
 }
