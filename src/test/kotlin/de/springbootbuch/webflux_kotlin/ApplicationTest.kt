@@ -1,9 +1,9 @@
 package de.springbootbuch.webflux_kotlin
 
-import org.junit.*
-import org.junit.runner.*
-import org.springframework.test.context.junit4.*
-import org.springframework.test.web.reactive.server.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.web.reactive.server.WebTestClient
 
 @RunWith(SpringRunner::class)
 class ApplicationTest {
