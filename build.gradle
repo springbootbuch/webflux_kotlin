@@ -39,4 +39,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$ktVersion"
     compile "org.jetbrains.kotlin:kotlin-reflect:$ktVersion"
     compile "org.springframework.boot:spring-boot-starter-webflux"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
