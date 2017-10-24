@@ -5,7 +5,7 @@ buildscript {
     }
     ext {
         ktVersion = "1.1.51"
-        springBootVersion = "2.0.0.M4"
+        springBootVersion = "2.0.0.M5"
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ktVersion"
