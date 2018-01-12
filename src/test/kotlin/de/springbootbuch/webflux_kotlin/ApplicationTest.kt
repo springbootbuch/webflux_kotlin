@@ -17,7 +17,6 @@ class ApplicationTest {
         webTestClient
                 .get().uri("/greetings/hello")
                 .exchange().expectStatus().isOk
-                //.expectBody(String::class.java).isEqualTo<Nothing>("Hello, World\n")        //fixed with KT-5464 in Kotlin 1.2
                 .expectBody().equals("Hello, World\n")
     }
 
@@ -26,7 +25,6 @@ class ApplicationTest {
         webTestClient
                 .get().uri("/greetings/hello?name=Kotlin")
                 .exchange().expectStatus().isOk
-                //.expectBody(String::class.java).isEqualTo<Nothing>("Hello, Kotlin\n")        //fixed with KT-5464 in Kotlin 1.2
                 .expectBody().equals("Hello, Kotlin\n")
     }
 
@@ -35,7 +33,6 @@ class ApplicationTest {
         webTestClient
                 .get().uri("/greetings/goodbye")
                 .exchange().expectStatus().isOk
-                //.expectBody(String::class.java).isEqualTo<Nothing>("Goodbye\n")        //fixed with KT-5464 in Kotlin 1.2
                 .expectBody().equals("Goodbye\n")
     }
 }
