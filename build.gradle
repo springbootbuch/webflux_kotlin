@@ -5,7 +5,7 @@ buildscript {
     }
     ext {
         ktVersion = "1.2.21"
-        springBootVersion = "2.0.0.RC1"
+        springBootVersion = "2.0.0.RELEASE"
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ktVersion"
@@ -37,7 +37,6 @@ jar {
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
