@@ -1,11 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url 'https://repo.spring.io/milestone' }
     }
     ext {
-        ktVersion = "1.2.21"
-        springBootVersion = "2.0.0.RELEASE"
+        ktVersion = "1.4.10"
+        springBootVersion = '2.4.0-RC1'
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ktVersion"
@@ -37,6 +37,7 @@ jar {
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
@@ -45,4 +46,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-webflux"
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
+}
+
+test {
+  useJUnitPlatform()
 }

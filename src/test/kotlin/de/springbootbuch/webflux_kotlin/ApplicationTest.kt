@@ -1,11 +1,11 @@
 package de.springbootbuch.webflux_kotlin
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.springframework.test.context.junit4.SpringRunner
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.reactive.server.WebTestClient
 
-@RunWith(SpringRunner::class)
+@ExtendWith(SpringExtension::class)
 class ApplicationTest {
 
     private val webTestClient = WebTestClient
